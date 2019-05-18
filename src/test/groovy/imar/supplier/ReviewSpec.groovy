@@ -1,10 +1,9 @@
-package imar
+package imar.supplier
 
 import grails.testing.gorm.DomainUnitTest
-import imar.client.Prospect
 import spock.lang.Specification
 
-class ProspectSpec extends Specification implements DomainUnitTest<Prospect> {
+class ReviewSpec extends Specification implements DomainUnitTest<Review> {
 
     def setup() {
     }

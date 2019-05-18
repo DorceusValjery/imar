@@ -1,6 +1,7 @@
 package imar
 
 import grails.testing.gorm.DomainUnitTest
+import imar.utils.Person
 import spock.lang.Specification
 
 class PersonSpec extends Specification implements DomainUnitTest<Person> {

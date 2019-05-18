@@ -1,6 +1,7 @@
 package imar
 
 import grails.testing.gorm.DomainUnitTest
+import imar.supplier.Supplier
 import spock.lang.Specification
 
 class SupplierSpec extends Specification implements DomainUnitTest<Supplier> {

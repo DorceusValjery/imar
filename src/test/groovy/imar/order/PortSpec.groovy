@@ -1,10 +1,9 @@
-package imar
+package imar.order
 
 import grails.testing.gorm.DomainUnitTest
-import imar.client.Prospect
 import spock.lang.Specification
 
-class ProspectSpec extends Specification implements DomainUnitTest<Prospect> {
+class PortSpec extends Specification implements DomainUnitTest<Port> {
 
     def setup() {
     }

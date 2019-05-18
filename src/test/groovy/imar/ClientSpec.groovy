@@ -1,6 +1,7 @@
 package imar
 
 import grails.testing.gorm.DomainUnitTest
+import imar.client.Client
 import spock.lang.Specification
 
 class ClientSpec extends Specification implements DomainUnitTest<Client> {
