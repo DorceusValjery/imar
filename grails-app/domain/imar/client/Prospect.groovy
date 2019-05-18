@@ -1,4 +1,6 @@
-package imar
+package imar.client
+
+import imar.utils.Person
 
 class Prospect {
 
