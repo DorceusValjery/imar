@@ -6,6 +6,7 @@ class Person {
     String lastname;
     String secondName;
     Date dateOfBirth;
+    String email;
 
     static constraints = {
     }
