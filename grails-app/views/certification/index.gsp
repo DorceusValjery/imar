@@ -8,6 +8,13 @@
     <body>
 
     <div class="table-responsive">
+        <h5><g:message code="default.list.label" args="[entityName]" /></h5>
+        <g:if test="${flash.message}">
+            <div class="message" role="status">${flash.message}</div>
+        </g:if>
+        <div class="imarPagination">
+            <g:paginate total="${certificationCount ?: 0}" />
+        </div>
         <table id="recent-purchases-listing" class="table">
             <thead>
             <tr>
