@@ -11,5 +11,6 @@
 *= require vendors/base/vendor.bundle.base.css
 *= require vendors/datatables.net-bs4/dataTables.bootstrap4.css
 *= require css/style.css
+*= require imar
 *= require_self
 */

@@ -1,0 +1,23 @@
+
+
+
+.imarPagination{
+    padding-left: 10px;
+    list-style: none;
+    margin: 0 auto;
+    max-width: max-content;
+    align-content: center;
+}
+
+.imarPagination > a  {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size : medium;
+    display: inline-block;
+}
+.imarPagination > span {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: medium;
+    display: inline-block;
+}
