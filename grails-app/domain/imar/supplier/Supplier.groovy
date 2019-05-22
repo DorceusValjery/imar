@@ -20,6 +20,11 @@ class Supplier {
     boolean speakEnglish;
     boolean afterSaleService;
 
+    @Override
+    String toString(){
+        return name
+    }
+
 
 
     static hasMany = [specializations:Specialization, certifications:Certification, reviews: Review]

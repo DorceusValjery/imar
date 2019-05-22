@@ -4,7 +4,9 @@ import imar.supplier.Supplier
 class Product {
     String name;
     Supplier supplier;
-    Currency priceOfAcquisition;
+    double priceOfAcquisition;
+
+
 
     @Override
     public String toString(){

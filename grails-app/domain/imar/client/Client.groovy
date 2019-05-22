@@ -1,6 +1,6 @@
 package imar.client
 
-import imar.order.Order
+import imar.order.Purchase
 import imar.utils.Person
 
 class Client {
@@ -9,7 +9,7 @@ class Client {
     Date becameClientOn = new Date()
 
 
-    static hasMany = [orders: Order]
+    static hasMany = [orders: Purchase]
 
     int orderCount(){
         return orders?.size()
