@@ -1,12 +1,12 @@
-package imar.supplier
+package imar.order
 
 import grails.testing.gorm.DomainUnitTest
 import grails.testing.web.controllers.ControllerUnitTest
 import grails.validation.ValidationException
-import imar.controller.SpecializationController
+import imar.controller.PortController
 import spock.lang.*
 
-class SpecializationControllerSpec extends Specification implements ControllerUnitTest<SpecializationController>, DomainUnitTest<Specialization> {
+class PortControllerSpec extends Specification implements ControllerUnitTest<PortController>, DomainUnitTest<Port> {
 
     def populateValidParams(params) {
         assert params != null
@@ -18,7 +18,7 @@ class SpecializationControllerSpec extends Specification implements ControllerUn
 
     void "Test the index action returns the correct model"() {
         given:
-        controller.specializationService = Mock(SpecializationService) {
+        controller.portService = Mock(PortService) {
             1 * list(_) >> []
             1 * count() >> 0
         }
@@ -27,8 +27,8 @@ class SpecializationControllerSpec extends Specification implements ControllerUn
         controller.index()
 
         then:"The model is correct"
-        !model.specializationList
-        model.specializationCount == 0
+        !model.portList
+        model.portCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -36,7 +36,7 @@ class SpecializationControllerSpec extends Specification implements ControllerUn
         controller.create()
 
         then:"The model is correctly created"
-        model.specialization!= null
+        model.port!= null
     }
 
     void "Test the save action with a null instance"() {
@@ -46,14 +46,14 @@ class SpecializationControllerSpec extends Specification implements ControllerUn
         controller.save(null)
 
         then:"A 404 error is returned"
-        response.redirectedUrl == '/specialization/index'
+        response.redirectedUrl == '/port/index'
         flash.message != null
     }
 
     void "Test the save action correctly persists"() {
         given:
-        controller.specializationService = Mock(SpecializationService) {
-            1 * save(_ as Specialization)
+        controller.portService = Mock(PortService) {
+            1 * save(_ as Port)
         }
 
         when:"The save action is executed with a valid instance"
@@ -61,38 +61,38 @@ class SpecializationControllerSpec extends Specification implements ControllerUn
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'POST'
         populateValidParams(params)
-        def specialization = new Specialization(params)
-        specialization.id = 1
+        def port = new Port(params)
+        port.id = 1
 
-        controller.save(specialization)
+        controller.save(port)
 
         then:"A redirect is issued to the show action"
-        response.redirectedUrl == '/specialization/show/1'
+        response.redirectedUrl == '/port/show/1'
         controller.flash.message != null
     }
 
     void "Test the save action with an invalid instance"() {
         given:
-        controller.specializationService = Mock(SpecializationService) {
-            1 * save(_ as Specialization) >> { Specialization specialization ->
-                throw new ValidationException("Invalid instance", specialization.errors)
+        controller.portService = Mock(PortService) {
+            1 * save(_ as Port) >> { Port port ->
+                throw new ValidationException("Invalid instance", port.errors)
             }
         }
 
         when:"The save action is executed with an invalid instance"
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'POST'
-        def specialization = new Specialization()
-        controller.save(specialization)
+        def port = new Port()
+        controller.save(port)
 
         then:"The create view is rendered again with the correct model"
-        model.specialization != null
+        model.port != null
         view == 'create'
     }
 
     void "Test the show action with a null id"() {
         given:
-        controller.specializationService = Mock(SpecializationService) {
+        controller.portService = Mock(PortService) {
             1 * get(null) >> null
         }
 
@@ -105,20 +105,20 @@ class SpecializationControllerSpec extends Specification implements ControllerUn
 
     void "Test the show action with a valid id"() {
         given:
-        controller.specializationService = Mock(SpecializationService) {
-            1 * get(2) >> new Specialization()
+        controller.portService = Mock(PortService) {
+            1 * get(2) >> new Port()
         }
 
         when:"A domain instance is passed to the show action"
         controller.show(2)
 
         then:"A model is populated containing the domain instance"
-        model.specialization instanceof Specialization
+        model.port instanceof Port
     }
 
     void "Test the edit action with a null id"() {
         given:
-        controller.specializationService = Mock(SpecializationService) {
+        controller.portService = Mock(PortService) {
             1 * get(null) >> null
         }
 
@@ -131,15 +131,15 @@ class SpecializationControllerSpec extends Specification implements ControllerUn
 
     void "Test the edit action with a valid id"() {
         given:
-        controller.specializationService = Mock(SpecializationService) {
-            1 * get(2) >> new Specialization()
+        controller.portService = Mock(PortService) {
+            1 * get(2) >> new Port()
         }
 
         when:"A domain instance is passed to the show action"
         controller.edit(2)
 
         then:"A model is populated containing the domain instance"
-        model.specialization instanceof Specialization
+        model.port instanceof Port
     }
 
 
@@ -150,14 +150,14 @@ class SpecializationControllerSpec extends Specification implements ControllerUn
         controller.update(null)
 
         then:"A 404 error is returned"
-        response.redirectedUrl == '/specialization/index'
+        response.redirectedUrl == '/port/index'
         flash.message != null
     }
 
     void "Test the update action correctly persists"() {
         given:
-        controller.specializationService = Mock(SpecializationService) {
-            1 * save(_ as Specialization)
+        controller.portService = Mock(PortService) {
+            1 * save(_ as Port)
         }
 
         when:"The save action is executed with a valid instance"
@@ -165,31 +165,31 @@ class SpecializationControllerSpec extends Specification implements ControllerUn
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'PUT'
         populateValidParams(params)
-        def specialization = new Specialization(params)
-        specialization.id = 1
+        def port = new Port(params)
+        port.id = 1
 
-        controller.update(specialization)
+        controller.update(port)
 
         then:"A redirect is issued to the show action"
-        response.redirectedUrl == '/specialization/show/1'
+        response.redirectedUrl == '/port/show/1'
         controller.flash.message != null
     }
 
     void "Test the update action with an invalid instance"() {
         given:
-        controller.specializationService = Mock(SpecializationService) {
-            1 * save(_ as Specialization) >> { Specialization specialization ->
-                throw new ValidationException("Invalid instance", specialization.errors)
+        controller.portService = Mock(PortService) {
+            1 * save(_ as Port) >> { Port port ->
+                throw new ValidationException("Invalid instance", port.errors)
             }
         }
 
         when:"The save action is executed with an invalid instance"
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'PUT'
-        controller.update(new Specialization())
+        controller.update(new Port())
 
         then:"The edit view is rendered again with the correct model"
-        model.specialization != null
+        model.port != null
         view == 'edit'
     }
 
@@ -200,13 +200,13 @@ class SpecializationControllerSpec extends Specification implements ControllerUn
         controller.delete(null)
 
         then:"A 404 is returned"
-        response.redirectedUrl == '/specialization/index'
+        response.redirectedUrl == '/port/index'
         flash.message != null
     }
 
     void "Test the delete action with an instance"() {
         given:
-        controller.specializationService = Mock(SpecializationService) {
+        controller.portService = Mock(PortService) {
             1 * delete(2)
         }
 
@@ -216,7 +216,7 @@ class SpecializationControllerSpec extends Specification implements ControllerUn
         controller.delete(2)
 
         then:"The user is redirected to index"
-        response.redirectedUrl == '/specialization/index'
+        response.redirectedUrl == '/port/index'
         flash.message != null
     }
 }

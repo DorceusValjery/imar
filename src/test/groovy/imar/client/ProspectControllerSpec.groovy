@@ -1,12 +1,12 @@
-package imar.supplier
+package imar.client
 
 import grails.testing.gorm.DomainUnitTest
 import grails.testing.web.controllers.ControllerUnitTest
 import grails.validation.ValidationException
-import imar.controller.SpecializationController
+import imar.controller.ProspectController
 import spock.lang.*
 
-class SpecializationControllerSpec extends Specification implements ControllerUnitTest<SpecializationController>, DomainUnitTest<Specialization> {
+class ProspectControllerSpec extends Specification implements ControllerUnitTest<ProspectController>, DomainUnitTest<Prospect> {
 
     def populateValidParams(params) {
         assert params != null
@@ -18,7 +18,7 @@ class SpecializationControllerSpec extends Specification implements ControllerUn
 
     void "Test the index action returns the correct model"() {
         given:
-        controller.specializationService = Mock(SpecializationService) {
+        controller.prospectService = Mock(ProspectService) {
             1 * list(_) >> []
             1 * count() >> 0
         }
@@ -27,8 +27,8 @@ class SpecializationControllerSpec extends Specification implements ControllerUn
         controller.index()
 
         then:"The model is correct"
-        !model.specializationList
-        model.specializationCount == 0
+        !model.prospectList
+        model.prospectCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -36,7 +36,7 @@ class SpecializationControllerSpec extends Specification implements ControllerUn
         controller.create()
 
         then:"The model is correctly created"
-        model.specialization!= null
+        model.prospect!= null
     }
 
     void "Test the save action with a null instance"() {
@@ -46,14 +46,14 @@ class SpecializationControllerSpec extends Specification implements ControllerUn
         controller.save(null)
 
         then:"A 404 error is returned"
-        response.redirectedUrl == '/specialization/index'
+        response.redirectedUrl == '/prospect/index'
         flash.message != null
     }
 
     void "Test the save action correctly persists"() {
         given:
-        controller.specializationService = Mock(SpecializationService) {
-            1 * save(_ as Specialization)
+        controller.prospectService = Mock(ProspectService) {
+            1 * save(_ as Prospect)
         }
 
         when:"The save action is executed with a valid instance"
@@ -61,38 +61,38 @@ class SpecializationControllerSpec extends Specification implements ControllerUn
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'POST'
         populateValidParams(params)
-        def specialization = new Specialization(params)
-        specialization.id = 1
+        def prospect = new Prospect(params)
+        prospect.id = 1
 
-        controller.save(specialization)
+        controller.save(prospect)
 
         then:"A redirect is issued to the show action"
-        response.redirectedUrl == '/specialization/show/1'
+        response.redirectedUrl == '/prospect/show/1'
         controller.flash.message != null
     }
 
     void "Test the save action with an invalid instance"() {
         given:
-        controller.specializationService = Mock(SpecializationService) {
-            1 * save(_ as Specialization) >> { Specialization specialization ->
-                throw new ValidationException("Invalid instance", specialization.errors)
+        controller.prospectService = Mock(ProspectService) {
+            1 * save(_ as Prospect) >> { Prospect prospect ->
+                throw new ValidationException("Invalid instance", prospect.errors)
             }
         }
 
         when:"The save action is executed with an invalid instance"
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'POST'
-        def specialization = new Specialization()
-        controller.save(specialization)
+        def prospect = new Prospect()
+        controller.save(prospect)
 
         then:"The create view is rendered again with the correct model"
-        model.specialization != null
+        model.prospect != null
         view == 'create'
     }
 
     void "Test the show action with a null id"() {
         given:
-        controller.specializationService = Mock(SpecializationService) {
+        controller.prospectService = Mock(ProspectService) {
             1 * get(null) >> null
         }
 
@@ -105,20 +105,20 @@ class SpecializationControllerSpec extends Specification implements ControllerUn
 
     void "Test the show action with a valid id"() {
         given:
-        controller.specializationService = Mock(SpecializationService) {
-            1 * get(2) >> new Specialization()
+        controller.prospectService = Mock(ProspectService) {
+            1 * get(2) >> new Prospect()
         }
 
         when:"A domain instance is passed to the show action"
         controller.show(2)
 
         then:"A model is populated containing the domain instance"
-        model.specialization instanceof Specialization
+        model.prospect instanceof Prospect
     }
 
     void "Test the edit action with a null id"() {
         given:
-        controller.specializationService = Mock(SpecializationService) {
+        controller.prospectService = Mock(ProspectService) {
             1 * get(null) >> null
         }
 
@@ -131,15 +131,15 @@ class SpecializationControllerSpec extends Specification implements ControllerUn
 
     void "Test the edit action with a valid id"() {
         given:
-        controller.specializationService = Mock(SpecializationService) {
-            1 * get(2) >> new Specialization()
+        controller.prospectService = Mock(ProspectService) {
+            1 * get(2) >> new Prospect()
         }
 
         when:"A domain instance is passed to the show action"
         controller.edit(2)
 
         then:"A model is populated containing the domain instance"
-        model.specialization instanceof Specialization
+        model.prospect instanceof Prospect
     }
 
 
@@ -150,14 +150,14 @@ class SpecializationControllerSpec extends Specification implements ControllerUn
         controller.update(null)
 
         then:"A 404 error is returned"
-        response.redirectedUrl == '/specialization/index'
+        response.redirectedUrl == '/prospect/index'
         flash.message != null
     }
 
     void "Test the update action correctly persists"() {
         given:
-        controller.specializationService = Mock(SpecializationService) {
-            1 * save(_ as Specialization)
+        controller.prospectService = Mock(ProspectService) {
+            1 * save(_ as Prospect)
         }
 
         when:"The save action is executed with a valid instance"
@@ -165,31 +165,31 @@ class SpecializationControllerSpec extends Specification implements ControllerUn
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'PUT'
         populateValidParams(params)
-        def specialization = new Specialization(params)
-        specialization.id = 1
+        def prospect = new Prospect(params)
+        prospect.id = 1
 
-        controller.update(specialization)
+        controller.update(prospect)
 
         then:"A redirect is issued to the show action"
-        response.redirectedUrl == '/specialization/show/1'
+        response.redirectedUrl == '/prospect/show/1'
         controller.flash.message != null
     }
 
     void "Test the update action with an invalid instance"() {
         given:
-        controller.specializationService = Mock(SpecializationService) {
-            1 * save(_ as Specialization) >> { Specialization specialization ->
-                throw new ValidationException("Invalid instance", specialization.errors)
+        controller.prospectService = Mock(ProspectService) {
+            1 * save(_ as Prospect) >> { Prospect prospect ->
+                throw new ValidationException("Invalid instance", prospect.errors)
             }
         }
 
         when:"The save action is executed with an invalid instance"
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'PUT'
-        controller.update(new Specialization())
+        controller.update(new Prospect())
 
         then:"The edit view is rendered again with the correct model"
-        model.specialization != null
+        model.prospect != null
         view == 'edit'
     }
 
@@ -200,13 +200,13 @@ class SpecializationControllerSpec extends Specification implements ControllerUn
         controller.delete(null)
 
         then:"A 404 is returned"
-        response.redirectedUrl == '/specialization/index'
+        response.redirectedUrl == '/prospect/index'
         flash.message != null
     }
 
     void "Test the delete action with an instance"() {
         given:
-        controller.specializationService = Mock(SpecializationService) {
+        controller.prospectService = Mock(ProspectService) {
             1 * delete(2)
         }
 
@@ -216,7 +216,7 @@ class SpecializationControllerSpec extends Specification implements ControllerUn
         controller.delete(2)
 
         then:"The user is redirected to index"
-        response.redirectedUrl == '/specialization/index'
+        response.redirectedUrl == '/prospect/index'
         flash.message != null
     }
 }

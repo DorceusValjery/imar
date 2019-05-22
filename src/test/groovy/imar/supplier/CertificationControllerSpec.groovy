@@ -3,6 +3,7 @@ package imar.supplier
 import grails.testing.gorm.DomainUnitTest
 import grails.testing.web.controllers.ControllerUnitTest
 import grails.validation.ValidationException
+import imar.controller.CertificationController
 import spock.lang.*
 
 class CertificationControllerSpec extends Specification implements ControllerUnitTest<CertificationController>, DomainUnitTest<Certification> {
