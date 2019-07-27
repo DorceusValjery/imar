@@ -3,6 +3,9 @@ package imar.order
 import imar.client.Client
 import imar.utils.CargoType
 import imar.utils.ShippingMethod
+import static imar.utils.DateHelper.getDate
+
+import java.time.LocalDate
 
 class Purchase {
     String purchaseNumber
@@ -27,8 +30,8 @@ class Purchase {
     static constraints = {
         shippingMethod nullable: true
         typeOfCargo nullable: true
-        payedOn nullable: true
-        deliveredOn nullable: true
+        payedOn nullable: true, max: new Date(), min: getDate(LocalDate.of(1900,1,1))
+        deliveredOn nullable: true, max: new Date(), min: getDate(LocalDate.of(1900,1,1))
         termsOfPayment nullable: true
         shippingStatus nullable: true
         deliveryStatus nullable: true

@@ -1,5 +1,8 @@
 package imar.supplier
 
+import java.time.LocalDate
+import static imar.utils.DateHelper.getDate
+
 class Certification {
 
     String name
@@ -8,13 +11,13 @@ class Certification {
     Date expiringOn
 
     static constraints = {
-        obtainedOn nullable: true
+        obtainedOn nullable: true, min: getDate(LocalDate.of(1900,1,1)) , max: new Date()
         expiringOn nullable: true
         isoCode unique: true, nullable: true
     }
 
     @Override
     String toString(){
-        return "ISO: ".concat(isoCode).concat(" /").concat(name)
+        return "ISO: "+ isoCode+ " /"+name
     }
 }

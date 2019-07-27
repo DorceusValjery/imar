@@ -7,10 +7,9 @@
 * You're free to add application-wide styles to this file and they'll appear at the top of the
 * compiled file, but it's generally better to create a new file per style scope.
 *
-*= require vendors/mdi/css/materialdesignicons.min.css
-*= require vendors/base/vendor.bundle.base.css
-*= require vendors/datatables.net-bs4/dataTables.bootstrap4.css
-*= require css/style.css
-*= require imar
+*= require bootstrap
+*= require grails
+*= require main
+*= require mobile
 *= require_self
 */

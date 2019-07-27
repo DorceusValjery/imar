@@ -4,8 +4,8 @@ import imar.utils.Person
 
 class Port {
     String name
-    double longitude=0.0;
-    double latitude=0.0;
+    double longitude
+    double latitude
     int rating=1;
     String comments;
     Person pointOfContact;
@@ -19,5 +19,7 @@ class Port {
         rating min: 0, max: 5
         comments nullable: true, minSize: 10, blank: true
         pointOfContact nullable: true
+        longitude nullable: true
+        latitude nullable: true
     }
 }

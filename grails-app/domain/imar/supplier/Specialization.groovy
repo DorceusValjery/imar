@@ -10,6 +10,6 @@ class Specialization {
     }
     @Override
     String toString(){
-        return prefix.concat(":").concat(name)
+        return prefix?.concat(":")?.concat(name)
     }
 }

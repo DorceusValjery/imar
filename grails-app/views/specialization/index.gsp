@@ -29,9 +29,9 @@
             <tbody>
             <g:each var="spec" in="${specializationList}">
                 <tr>
-                    <td>${spec.id}</td>
-                    <td>${spec.prefix}</td>
-                    <td>${spec.name}</td>
+                    <td><g:link action="show" resource="${spec}">${spec.id}</g:link></td>
+                    <td><g:link action="show" resource="${spec}">${spec.prefix}</g:link></td>
+                    <td><g:link action="show" resource="${spec}">${spec.name}</g:link></td>
                     <td>${spec.industry.prefix}</td>
                     <td>${spec.industry.name}</td>
                     <td>0</td>

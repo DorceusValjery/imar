@@ -51,16 +51,16 @@
                                         </div>
                                     </div>
                                     <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                        <i class="mdi mdi-eye mr-3 icon-lg text-success"></i>
+                                        <i class="mdi mdi-barcode-scan mr-3 icon-lg text-success"></i>
                                         <div class="d-flex flex-column justify-content-around">
-                                            <small class="mb-1 text-muted">Total views</small>
-                                            <h5 class="mr-2 mb-0">9833550</h5>
+                                            <small class="mb-1 text-muted">Product Sold</small>
+                                            <h5 class="mr-2 mb-0">98335</h5>
                                         </div>
                                     </div>
                                     <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                        <i class="mdi mdi-download mr-3 icon-lg text-warning"></i>
+                                        <i class="mdi mdi-truck-delivery mr-3 icon-lg text-warning"></i>
                                         <div class="d-flex flex-column justify-content-around">
-                                            <small class="mb-1 text-muted">Downloads</small>
+                                            <small class="mb-1 text-muted">Supplier reached</small>
                                             <h5 class="mr-2 mb-0">2233783</h5>
                                         </div>
                                     </div>

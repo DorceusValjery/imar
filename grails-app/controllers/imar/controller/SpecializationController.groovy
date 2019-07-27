@@ -1,6 +1,9 @@
-package imar.supplier
+package imar.controller
 
 import grails.validation.ValidationException
+import imar.supplier.Specialization
+import imar.supplier.SpecializationService
+
 import static org.springframework.http.HttpStatus.*
 
 class SpecializationController {

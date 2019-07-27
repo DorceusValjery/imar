@@ -1,40 +1,60 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="layout" content="main" />
+        <meta name="layout" content="majestic" />
         <g:set var="entityName" value="${message(code: 'supplier.label', default: 'Supplier')}" />
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
     </head>
     <body>
-        <a href="#edit-supplier" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-            </ul>
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title"><g:message code="default.edit.label" args="[entityName]" /></h4>
+
+                <g:if test="${flash.message}">
+                    <div class="message" role="status">${flash.message}</div>
+                </g:if>
+                <g:hasErrors bean="${this.supplier}">
+                    <ul class="errors" role="alert">
+                        <g:eachError bean="${this.supplier}" var="error">
+                            <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+                        </g:eachError>
+                    </ul>
+                </g:hasErrors>
+                <g:form resource="${this.supplier}" method="PUT" class="form-sample">
+                    <p class="card-description">
+                        <span>Supplier information</span>
+                    </p>
+                    <!-- NAME + ADDRESS + WEBSITE -->
+                    <f:with bean="supplier">
+                        <g:hiddenField name="version" value="${this.supplier?.version}" />
+                        <div class="row imarFormSection">
+                            <div class="col-md-4">
+                                <f:field  property="name" /><br>
+                                <f:field  property="address" /><br>
+                                <f:field property="pointOfContact" /><br>
+                                <f:field property="businessHistoric"/><br>
+                                <f:field  property="website" /><br>
+                                <f:field property="acquisitionProcess"/><br>
+                            </div>
+                            <div class="col-md-5">
+                                <f:field property="acquiredOn"/><br>
+                                <f:field property="doingBusinessSince"/><br>
+                                <f:field property="sizeOfCompany"/><br>
+                                <f:field property="visitedFactory"/><br>
+                                <f:field property="haveMetRepresentative"/><br>
+                                <f:field property="backgroundCheck"/><br>
+                                <f:field property="afterSaleService"/><br>
+                                <f:field property="speakEnglish"/><br>
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
+                    </f:with>
+                    <g:submitButton name="create" class="save btn btn-primary btn-lg" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                </g:form>
+            </div>
         </div>
-        <div id="edit-supplier" class="content scaffold-edit" role="main">
-            <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <g:hasErrors bean="${this.supplier}">
-            <ul class="errors" role="alert">
-                <g:eachError bean="${this.supplier}" var="error">
-                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-                </g:eachError>
-            </ul>
-            </g:hasErrors>
-            <g:form resource="${this.supplier}" method="PUT">
-                <g:hiddenField name="version" value="${this.supplier?.version}" />
-                <fieldset class="form">
-                    <f:all bean="supplier"/>
-                </fieldset>
-                <fieldset class="buttons">
-                    <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-                </fieldset>
-            </g:form>
-        </div>
+    </div>
+
     </body>
 </html>

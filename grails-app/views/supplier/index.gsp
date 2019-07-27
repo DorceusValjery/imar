@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="layout" content="main" />
+        <meta name="layout" content="majestic" />
         <g:set var="entityName" value="${message(code: 'supplier.label', default: 'Supplier')}" />
         <title><g:message code="default.list.label" args="[entityName]" /></title>
     </head>
     <body>
-        <a href="#list-supplier" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+    <div class="table-responsive">
+        <table id="recent-suppliers-listing" class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Website</th>
+                <th>Point of Contact</th>
+                <th>Company size</th>
+            </tr>
+            </thead>
+            <tbody>
+            <g:each var="supplier" in="${supplierList}">
+                <tr>
+                    <td><g:link action="show" resource="${supplier}">${supplier.id}</g:link></td>
+                    <td><g:link action="show" resource="${supplier}">${supplier.name}</g:link></td>
+                    <td>${supplier.address}</td>
+                    <td>${supplier.website}</td>
+                    <td>${supplier.pointOfContact}</td>
+                    <td>${supplier.sizeOfCompany}</td>
+                </tr>
+            </g:each>
+            </tbody>
+        </table>
+    </div>
+        %{--<a href="#list-supplier" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
         <div class="nav" role="navigation">
             <ul>
                 <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
@@ -23,6 +49,6 @@
             <div class="pagination">
                 <g:paginate total="${supplierCount ?: 0}" />
             </div>
-        </div>
+        </div>--}%
     </body>
 </html>

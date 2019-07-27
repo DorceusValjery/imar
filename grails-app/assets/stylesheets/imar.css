@@ -21,3 +21,18 @@
     font-size: medium;
     display: inline-block;
 }
+.imarFormSection{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.imarFormSection label {
+
+}
+.imarFormSection input {
+
+}
+.imarDisplaySection label {
+    font-weight: bold;
+    padding-bottom: 15px;
+}

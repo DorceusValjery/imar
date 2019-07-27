@@ -29,8 +29,8 @@
             <tbody>
             <g:each var="certification" in="${certificationList}">
                 <tr>
-                    <td>${certification.id}</td>
-                    <td>${certification.name}</td>
+                    <td><g:link action="show" resource="${certification}">${certification.id}</g:link></td>
+                    <td><g:link action="show" resource="${certification}">${certification.name}</g:link></td>
                     <td>${certification.isoCode}</td>
                     <td>${certification.obtainedOn}</td>
                     <td>${certification.expiringOn}</td>

@@ -1,6 +1,9 @@
-package imar.supplier
+package imar.controller
 
 import grails.validation.ValidationException
+import imar.supplier.Certification
+import imar.supplier.CertificationService
+
 import static org.springframework.http.HttpStatus.*
 
 class CertificationController {
